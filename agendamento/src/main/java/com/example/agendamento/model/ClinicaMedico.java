@@ -20,7 +20,6 @@ public class ClinicaMedico {
     @JoinColumn(name = "idClinica")
     private Clinica clinica;
 
-    // Getters and Setters
     public Medico getMedico() {
         return medico;
     }

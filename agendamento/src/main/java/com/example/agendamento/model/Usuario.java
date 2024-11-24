@@ -1,5 +1,6 @@
 package com.example.agendamento.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -10,6 +11,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private int idUsuario;
 
     private String nome;
@@ -18,6 +20,7 @@ public class Usuario {
     private String telefone;
     private String sexo;
 
+    // Getters e setters
     public int getIdUsuario() {
         return idUsuario;
     }
