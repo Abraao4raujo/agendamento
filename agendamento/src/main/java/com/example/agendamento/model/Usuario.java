@@ -20,7 +20,7 @@ public class Usuario {
     @NotNull
     private String email;
 
-    @Column(name = "senha", nullable = false, length = 10)
+    @Column(name = "senha", nullable = false, length = 100)
     @NotNull
     private String senha;
 

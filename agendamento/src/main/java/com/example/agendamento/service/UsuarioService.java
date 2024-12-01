@@ -22,6 +22,7 @@ public class UsuarioService {
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
             throw new IllegalArgumentException("Email já está em uso");
         }
+
         return usuarioRepository.save(usuario);
     }
 
@@ -40,5 +41,9 @@ public class UsuarioService {
 
     public void deleteUsuario(int id) {
         usuarioRepository.deleteById(id);
+    }
+
+    public boolean verificarCredenciais(String senhaRecebida, String senhaSalva) {
+        return senhaRecebida.equals(senhaSalva);
     }
 }
