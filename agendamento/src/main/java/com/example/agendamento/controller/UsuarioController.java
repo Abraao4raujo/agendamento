@@ -3,7 +3,6 @@ package com.example.agendamento.controller;
 import com.example.agendamento.model.Usuario;
 import com.example.agendamento.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
