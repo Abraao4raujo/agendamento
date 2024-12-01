@@ -1,7 +1,7 @@
 package com.example.agendamento.service;
 
 import com.example.agendamento.model.Usuario;
-import com.example.agendamento.repository.UsuarioRepository; // Corrigido o import
+import com.example.agendamento.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,30 +12,33 @@ import java.util.Optional;
 public class UsuarioService {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;  // Corrigido o repositório
+    private UsuarioRepository usuarioRepository;
 
     public List<Usuario> findAllUsuarios() {
-        return usuarioRepository.findAll();  // Corrigido o tipo de retorno
+        return usuarioRepository.findAll();
     }
 
     public Usuario createUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);  // Criar um novo usuário
+        if (usuarioRepository.existsByEmail(usuario.getEmail())) {
+            throw new IllegalArgumentException("Email já está em uso");
+        }
+        return usuarioRepository.save(usuario);
     }
 
     public Usuario findUsuarioById(int id) {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
-        return usuario.orElse(null);  // Retorna o usuário ou null se não encontrado
+        return usuario.orElse(null);
     }
 
     public Usuario updateUsuario(int id, Usuario usuario) {
         if (usuarioRepository.existsById(id)) {
             usuario.setIdUsuario(id);
-            return usuarioRepository.save(usuario);  // Atualiza o usuário
+            return usuarioRepository.save(usuario);
         }
-        return null;  // Retorna null se o usuário não existir
+        return null;
     }
 
     public void deleteUsuario(int id) {
-        usuarioRepository.deleteById(id);  // Exclui o usuário pelo ID
+        usuarioRepository.deleteById(id);
     }
 }

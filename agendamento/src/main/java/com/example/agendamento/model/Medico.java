@@ -1,13 +1,9 @@
 package com.example.agendamento.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "medico")
 public class Medico {
 
     @Id
@@ -24,7 +20,6 @@ public class Medico {
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
-
 
     public int getIdMedico() {
         return idMedico;

@@ -23,9 +23,4 @@ public class ClinicaMedicoController {
     public ClinicaMedico createClinicaMedico(@RequestBody ClinicaMedico clinicaMedico) {
         return clinicaMedicoService.createClinicaMedico(clinicaMedico);
     }
-
-    @DeleteMapping("/{idMedico}/{idClinica}")
-    public void deleteClinicaMedico(@PathVariable int idMedico, @PathVariable int idClinica) {
-        clinicaMedicoService.deleteClinicaMedico(idMedico, idClinica);
-    }
 }

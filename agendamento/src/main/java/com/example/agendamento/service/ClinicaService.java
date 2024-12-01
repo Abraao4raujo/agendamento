@@ -14,6 +14,10 @@ public class ClinicaService {
     @Autowired
     private ClinicaRepository clinicaRepository;
 
+    public Clinica save(Clinica clinica) {
+        return clinicaRepository.save(clinica);
+    }
+
     public List<Clinica> findAllClinicas() {
         return clinicaRepository.findAll();
     }

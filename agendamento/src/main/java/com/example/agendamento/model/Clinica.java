@@ -1,29 +1,51 @@
 package com.example.agendamento.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "clinica")
 public class Clinica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idClinica;
+    @Column(name = "id_clinica")
+    private Integer idClinica;
 
-    private int idUsuario;
+    @Column(name = "cnpj", nullable = false, length = 14)
     private String cnpj;
+
+    @Column(name = "razaosocial", nullable = false, length = 100)
+    @JsonProperty("razaosocial")
     private String razaosocial;
-    private String rua;
+
+    @Column(name = "razao_social", nullable = true)
+    @JsonProperty("razao_social")
+    private String razao_social;
+
+    @Column(name = "bairro", nullable = false, length = 50)
     private String bairro;
-    private String numero;
-    private String complemento;
-    private String cidade;
-    private String estado;
+
+    @Column(name = "cep", nullable = false, length = 8)
     private String cep;
 
-    // Getters and Setters
+    @Column(name = "cidade", nullable = false, length = 50)
+    private String cidade;
+
+    @Column(name = "estado", nullable = false, length = 2)
+    private String estado;
+
+    @Column(name = "numero", nullable = false, length = 5)
+    private String numero;
+
+    @Column(name = "rua", nullable = false, length = 100)
+    private String rua;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
+
+
     public int getIdClinica() {
         return idClinica;
     }
@@ -32,28 +54,12 @@ public class Clinica {
         this.idClinica = idClinica;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public String getCnpj() {
         return cnpj;
     }
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
-    }
-
-    public String getRazaosocial() {
-        return razaosocial;
-    }
-
-    public void setRazaosocial(String razaosocial) {
-        this.razaosocial = razaosocial;
     }
 
     public String getRua() {
@@ -80,14 +86,6 @@ public class Clinica {
         this.numero = numero;
     }
 
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
     public String getCidade() {
         return cidade;
     }
@@ -110,5 +108,17 @@ public class Clinica {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public String getRazaoSocial() {
+        return razaosocial;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

@@ -20,8 +20,4 @@ public class ClinicaMedicoService {
     public ClinicaMedico createClinicaMedico(ClinicaMedico clinicaMedico) {
         return clinicaMedicoRepository.save(clinicaMedico);
     }
-
-    public void deleteClinicaMedico(int idMedico, int idClinica) {
-        // Implement logic for deletion
-    }
 }
