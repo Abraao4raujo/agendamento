@@ -43,7 +43,12 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    public boolean verificarCredenciais(String senhaRecebida, String senhaSalva) {
-        return senhaRecebida.equals(senhaSalva);
+    public Usuario verificarCredenciais(String email, String senha) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+
+        if (usuario != null) {
+            return usuario;
+        }
+        return null;
     }
 }
