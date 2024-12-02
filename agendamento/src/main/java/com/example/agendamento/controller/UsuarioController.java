@@ -3,6 +3,8 @@ package com.example.agendamento.controller;
 import com.example.agendamento.model.Usuario;
 import com.example.agendamento.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,7 +42,11 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public boolean loginUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.verificarCredenciais(usuario.getSenha(), "senhaSalva");
+    public ResponseEntity<?> loginUsuario(@RequestBody Usuario usuario) {
+        Usuario usuarioEncontrado = usuarioService.verificarCredenciais(usuario.getEmail(), usuario.getSenha());
+        if (usuarioEncontrado == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
+        }
+        return ResponseEntity.ok(usuarioEncontrado);
     }
 }
